@@ -17,13 +17,9 @@ def CreateWaveStereo( leftHz : float, rightHz : float, waveRange : int, filename
     #sin(2π*□＊t) の周波数は□の部分。16ビットで録音するので、
     #－32768～32767がデータの範囲。
     
-    #純正律
-    leftData = waveRange * np.sin(2*pi*leftHz*t) + waveRange * np.sin(2*pi*leftHz*5/4*t)
-    rightData = waveRange * np.sin(2*pi*rightHz*3/2*t)
-
-    #平均律
-    #leftData = waveRange * np.sin(2*pi*leftHz*t) + waveRange * np.sin(2*pi*leftHz*(r12**4)*t)
-    #rightData = waveRange * np.sin(2*pi*rightHz*(r12**7)*t)
+    #左右どちらもミを流す
+    leftData = waveRange * np.sin(2*pi*leftHz*5/4*t) #純正律
+    rightData = waveRange * np.sin(2*pi*rightHz*(r12**4)*t) #平均律
 
     soundData = np.zeros(N * 2, dtype= "int16") #左右のデータ分が必要
     soundData[0::2] = leftData # 0番目から2要素ずつ代入
@@ -43,7 +39,7 @@ print('▼▼▼▼ {}:{}:{}'.format(dt.hour, dt.minute, dt.second))
 
 # L:ラ R:ド　の音声ファイルを作成
 # #Hzは振幅の回数　100Hzの場合0~10000~0~-10000~0　という変化を1秒間に100回繰り返す
-CreateWaveStereo(WaveDefine.MusicalScale.Do, WaveDefine.MusicalScale.Do, 10000, "do_zyunnsei.wav")
+CreateWaveStereo(WaveDefine.MusicalScale.Do, WaveDefine.MusicalScale.Do, 10000, "mi_uneri.wav")
 
 dt = datetime.datetime.now()
 print('▲▲▲▲ {}:{}:{}'.format(dt.hour, dt.minute, dt.second))
