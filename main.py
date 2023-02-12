@@ -5,6 +5,7 @@ import numpy as np
 import datetime
 
 from WaveDefine import *
+from GraphDraw import GraphDraw
 
 def CreateWaveStereo(leftHz : float, rightHz : float, waveRange : int, filename : str , time : int = 10):
     '''ステレオなWaveファイルを作成する'''
@@ -55,7 +56,11 @@ if waveFile != None:
     print("●parameter = ", waveFile.getparams())
     print("●framerate = ", waveFile.getframerate())
 #Waveファイルの破棄
-UnloadWaveFile(waveFile)                               
+UnloadWaveFile(waveFile)      
+
+graph = GraphDraw()
+graph.Draw()
+del graph
 
 dt = datetime.datetime.now()
 print('▲▲▲▲ {}:{}:{}'.format(dt.hour, dt.minute, dt.second))
