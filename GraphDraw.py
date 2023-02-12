@@ -18,5 +18,5 @@ class GraphDraw:
         #0 <= t < 1 を0.2間隔で
         t = np.arange(0, 1, 0.2)
         y = t * t
-        plt.plot(y)
+        plt.plot(t, y)
         plt.show()
